@@ -37,7 +37,7 @@
         /**
          * @return string the array of arguments to pass to the bind_param method.
          */
-        public function getArgs(): string {
+        public function getArgs(): array {
             $args = [$this->types];
             $params = $this->params;
             for($i = 0; $i < count($params); $i++) {

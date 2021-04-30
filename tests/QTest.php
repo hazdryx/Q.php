@@ -21,11 +21,25 @@
         /**
          * @dataProvider appendProvider
          */
-        public function testAppendHasCoorectTypeString(string $query, array $params, string $types): void {
+        public function testAppendHasCorrectTypeString(string $query, array $params, string $types): void {
             $q = new Q();
             $q->append($query, $params);
 
             $this->assertEquals($types, $q->getTypeString());
+        }
+        /**
+         * @dataProvider appendProvider
+         */
+        public function testAppendHasCorrectArgs(string $query, array $params, string $types): void {
+            $q = new Q();
+            $q->append($query, $params);
+            
+            $args = [$types];
+            for ($i = 0; $i < count($params); $i++) {
+                $args[] = &$params[$i];
+            }
+
+            $this->assertEquals($args, $q->getArgs());
         }
         public function appendProvider(): array {
             return [
