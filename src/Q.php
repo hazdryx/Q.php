@@ -67,7 +67,7 @@
 
             return $this;
         }
-        private function getTypeChar($obj): string {
+        private function getTypeChar(mixed $obj): string {
             $type = gettype($obj);
             if($type == 'object') $class = get_class($obj);
 
