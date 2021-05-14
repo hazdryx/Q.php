@@ -10,7 +10,7 @@
      * @author Christopher Bishop
      */
     class Q {
-        private static ReflectionMethod $bindMethod;
+        private static ?ReflectionMethod $bindMethod = null;
         private string $query = '';
         private array $params = [];
         private string $types = '';
