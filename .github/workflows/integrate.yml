@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push: 
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+    - uses: php-actions/composer@v5
+      with:
+        php_version: 8.0
+        version: 2
+    - name: Test Code with PHPUnit
+    - uses: php-actions/phpunit@v2
+      with:
+        php_version: 8.0
+        version: 9
+    
+    
