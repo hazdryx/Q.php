@@ -1,7 +1,7 @@
 {
     "name": "hazdryx/q.php",
     "description": "A lightweight framework for secure MySQL database access and manipulation in PHP.",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "autoload": {
         "classmap": [
             "src/"

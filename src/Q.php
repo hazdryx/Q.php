@@ -5,7 +5,7 @@
      * A class which can create and execute query statements on different databases and return
      * results which are already processed.
      * 
-     * @version v1.0.0
+     * @version v0.1.0
      * @author Christopher Bishop
      */
     class Q {
@@ -76,6 +76,54 @@
             else if($type == 'double') return 'd';
             else if($type == 'object' && ($class == 'Closure' || $class == 'Callable')) return false;
             else return 'b';
+        }
+
+        /**
+         * Prepares a statement using the database connection.
+         * 
+         * @param mysqli $conn - Database connection.
+         * @return mysqli_stmt|false the unexecuted statement which has the variable bindings.
+         */
+        public function prepare(mysqli $conn): mysqli_stmt {
+            $stmt = $conn->prepare($this->getQuery());
+            if ($stmt) {
+                if($this->hasParameters()) Q::bindParam($stmt, $this->getArgs());
+                return $stmt;
+            }
+            return false;
+        }
+        private static function bindParam(mysqli_stmt $stmt, array $args) {
+            if (!Q::$bindMethod) {
+                $stmtClass = new ReflectionClass('mysqli_stmt');
+                Q::$bindMethod = $stmtClass->getMethod('bind_param');
+            }
+            Q::$bindMethod->invokeArgs($stmt, $args);
+        }
+
+        /**
+         * Executes a statement using the database connection.
+         * 
+         * @param mysqli $conn - Database connection.
+         * @param bool $closeStmt - Whether or not to close the statement.
+         * @param bool $throwError - Whether or not to throw the error as an exception.
+         * @return QResult the result from the execution.
+         */
+        public function execute(mysqli $conn, bool $throwError = true, bool $closeStmt = true): QResult {
+            // Prepare statement
+            $stmt = $this->prepare($conn);
+            $result;
+
+            // Execute and get results.
+            if ($stmt) {
+                $stmt->execute();
+                $result = QResult::fromStmt($conn, $stmt);
+                if ($closeStmt) $stmt->close();
+            }
+            else $result = QResult::fromStmt($conn);
+
+            // Return results.
+            if ($throwError) $result->throwError();
+            return $result;
         }
     }
 ?>
