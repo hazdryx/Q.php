@@ -1,6 +1,7 @@
 <?php
     namespace Hazdryx\Q;
-    
+    use mysqli, mysqli_stmt, ErrorException;
+
     /**
      * The result from a Q execution.
      * 

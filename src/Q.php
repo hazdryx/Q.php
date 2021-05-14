@@ -1,6 +1,7 @@
 <?php
     namespace Hazdryx\Q;
-    
+    use mysqli, mysqli_stmt, ReflectionClass, ReflectionMethod;
+
     /**
      * A class which can create and execute query statements on different databases and return
      * results which are already processed.
