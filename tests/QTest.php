@@ -2,7 +2,7 @@
     use Hazdryx\Q;
     use PHPUnit\Framework\TestCase;
 
-    final class QTests extends TestCase {
+    final class QTest extends TestCase {
         public function testCreateEmptyQ(): void {
             $q = new Q();
             $this->assertEmpty($q->getQuery());

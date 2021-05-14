@@ -9,16 +9,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Dependencies
-      uses: php-actions/composer@v5
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
       with:
-        php_version: 8.0
-        version: 2
-    - name: Test Code with PHPUnit
-      uses: php-actions/phpunit@v2
-      with:
-        php_version: 8.0
-        version: 9
+        php-version: '8.0'
+        coverage: none   
+        tools: composer
+    - name: Restore Dependencies
+      run: composer update
+    - name: Run PHPUnit Tests
+      run: vendor/bin/phpunit tests
     
     
