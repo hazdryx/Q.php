@@ -1,6 +1,6 @@
 <?php
-    namespace Hazdryx;
-
+    namespace Hazdryx\Q;
+    
     /**
      * A class which can create and execute query statements on different databases and return
      * results which are already processed.

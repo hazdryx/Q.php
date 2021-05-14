@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-    use Hazdryx\Q;
+    use Hazdryx\Q\Q;
     use PHPUnit\Framework\TestCase;
 
     final class QTest extends TestCase {

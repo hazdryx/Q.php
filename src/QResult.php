@@ -1,4 +1,6 @@
 <?php
+    namespace Hazdryx\Q;
+    
     /**
      * The result from a Q execution.
      * 
