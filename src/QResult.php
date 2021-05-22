@@ -31,14 +31,6 @@
         public function count(): int {
             return count($this->rows);
         }
-        /**
-         * @param callback $callback A callback function to pass the $row and $index data.
-         */
-        public function eachRow(callback $callback) {
-            for($i = 0; $i < count($this->rows); $i++) {
-                $callback($this->rows[$i], $i);
-            }
-        }
 
         /**
          * If there is an error, it throws it as an exception.
