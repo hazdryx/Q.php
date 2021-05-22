@@ -5,7 +5,6 @@
     /**
      * The result from a Q execution.
      * 
-     * @version v0.1.0
      * @author Christopher Bishop
      */
     final class QResult {

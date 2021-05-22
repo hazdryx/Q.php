@@ -6,7 +6,6 @@
      * A class which can create and execute query statements on different databases and return
      * results which are already processed.
      * 
-     * @version v0.1.0
      * @author Christopher Bishop
      */
     class Q {
@@ -126,20 +125,5 @@
             if ($throwError) $result->throwError();
             return $result;
         }
-    }
-
-    /**
-     * Creates and executes a Q object.
-     * 
-     * @author Christopher Bishop
-     * @param mysqli - The database to call the query on.
-     * @param string $query - An sql query with parameters.
-     * @param array $params - An array of parameters (default: []).
-     * @param bool $throwError - Whether to throw an error when it fails (default: true).
-     * @return QResult the result of the Q executing.
-     */
-    function q(mysqli $db, string $query, array $params = [], bool $throwError = true): QResult {
-        $q = new Q($query, $params);
-        return $q->execute($db);
     }
 ?>
