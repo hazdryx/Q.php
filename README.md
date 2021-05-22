@@ -2,7 +2,7 @@
 A lightweight PHP framework for secure MySQL database access and manipulation.
 
 ## Intallation
-Q.php is currently only distributed through Composer.
+Q.php is currently only distributed through Composer. To add it to your project, run the following command:
 
 `composer require hazdryx/q.php`
 
