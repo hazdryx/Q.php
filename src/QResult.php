@@ -9,7 +9,7 @@
      */
     final class QResult {
         /** @var mysqli_stmt $stmt - the statement executed to get this result. */
-        public mysqli_stmt $stmt;
+        public mysqli_stmt|false $stmt;
 
         /** @var array $rows - The rows extracted from the result set. */
         public array $rows = [];

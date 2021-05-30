@@ -84,7 +84,7 @@
          * @param mysqli $conn - Database connection.
          * @return mysqli_stmt|false the unexecuted statement which has the variable bindings.
          */
-        public function prepare(mysqli $conn): mysqli_stmt {
+        public function prepare(mysqli $conn): mysqli_stmt|false {
             $stmt = $conn->prepare($this->getQuery());
             if ($stmt) {
                 if($this->hasParameters()) Q::bindParam($stmt, $this->getArgs());
