@@ -12,6 +12,9 @@ If you don't use composer, you can copy the `/src` folder into your project from
 Q.php is a light wrapper for mysqli prepared statements, so knowing the basics of mysqli and prepared statements is highly recommended. Everything you need to know for Q.php will be explained in the examples.
 
 ### Q Objects
+Q.php is entirely based on `Q` objects. This object contains an SQL string (which can contain `?`) and a parameter array. When you execute a Q object, it creates a prepared statement using a `mysqli` database, the SQL string, and parameters provided and executes that statement.
+
+The result is a `QResult` object, which contains rows, affected rows, error codes, and the `mysqli_stmt` object which was executed.
 ```php
 // Creates a database object.
 $db = new mysqli('localhost', 'root', '', 'database');
@@ -34,6 +37,7 @@ foreach ($result->rows as $book) {
 ```
 
 ### q Function
+The `q` function serves the same purpose as the `Q` object. It creates an object in the background and executes it for you, returning the `QResult`. The benefit is: it removes some of the boilerplate code if you don't need the Q object for later use (such as calling it on multiple databases).
 ```php
 // Creates a database object.
 $db = new mysqli('localhost', 'root', '', 'database');
